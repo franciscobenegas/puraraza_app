@@ -29,7 +29,7 @@ export function MortandadScreen() {
 
     responseListener.current =
       Notifications.addNotificationResponseReceivedListener((response) => {
-        console.log(response);
+        //console.log(response);
       });
 
     return () => {
@@ -111,7 +111,6 @@ async function registerForPushNotificationsAsync() {
         projectId: "your-project-id",
       })
     ).data;
-    console.log(token);
   } else {
     alert("Must use physical device for Push Notifications");
   }
