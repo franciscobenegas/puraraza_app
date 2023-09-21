@@ -1,6 +1,7 @@
 import { useState, useEffect, createContext } from "react";
 import { storageCrtl, userCtrl } from "../api";
 import { fn } from "../utils";
+import { removeItem } from "../utils/asyncStorage";
 
 export const AuthContext = createContext();
 
@@ -43,6 +44,7 @@ export function AuthProvider(props) {
 
   const logout = async () => {
     await storageCrtl.removeToken();
+    await removeItem("onboarded");
     setUser(null);
   };
 

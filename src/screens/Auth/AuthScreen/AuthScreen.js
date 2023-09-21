@@ -1,47 +1,67 @@
-import { useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  Image,
-  KeyboardAvoidingView,
-  Platform,
-} from "react-native";
-import { LoginForm, RegisterForm } from "../../../components/Auth";
-import logo from "../../../../assets/Logo.png";
+import React, { useEffect, useState } from "react";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import HomeScreen from "../../../screens/HomeScreen.js";
+import OnboardingScreen from "../../../screens/OnboardingScreen.js";
+import { getItem } from "../../../utils/asyncStorage.js";
+import { View, Text } from "react-native";
+
+const Stack = createNativeStackNavigator();
 
 export function AuthScreen() {
-  const [showLogin, setShowLogin] = useState(true);
-  const onShowLoginRegister = () => {
-    setShowLogin((prevState) => !prevState);
+  const [showOnboarding, setShowOnboarding] = useState(null);
+  useEffect(() => {
+    checkIfAlreadyOnboarded();
+  }, []);
+
+  const checkIfAlreadyOnboarded = async () => {
+    let onboarded = await getItem("onboarded");
+    if (onboarded == 1) {
+      // hide onboarding
+      setShowOnboarding(false);
+    } else {
+      // show onboarding
+      setShowOnboarding(true);
+    }
   };
 
-  return (
-    <View style={styles.container}>
-      <Image source={logo} style={styles.logo} />
-      <KeyboardAvoidingView
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        {showLogin ? (
-          <LoginForm showRegister={onShowLoginRegister} />
-        ) : (
-          <RegisterForm showLogin={onShowLoginRegister} />
-        )}
-      </KeyboardAvoidingView>
-    </View>
-  );
-}
+  if (showOnboarding == null) {
+    return null;
+  }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 20,
-  },
-  logo: {
-    width: "100%",
-    height: "25%",
-    resizeMode: "cover",
-    marginBottom: 20,
-  },
-});
+  if (showOnboarding) {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Onboarding">
+          <Stack.Screen
+            name="Onboarding"
+            options={{ headerShown: false }}
+            component={OnboardingScreen}
+          />
+          <Stack.Screen
+            name="Home"
+            options={{ headerShown: false }}
+            component={HomeScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  } else {
+    return (
+      <NavigationContainer>
+        <Stack.Navigator initialRouteName="Home">
+          <Stack.Screen
+            name="Onboarding"
+            options={{ headerShown: false }}
+            component={OnboardingScreen}
+          />
+          <Stack.Screen
+            name="Home"
+            options={{ headerShown: false }}
+            component={HomeScreen}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    );
+  }
+}

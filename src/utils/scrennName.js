@@ -7,7 +7,7 @@ const home = {
 const diaria = {
   root: "diariaRoot",
   diaria: "diaria",
-  mortandad: "Mortandad",
+  mortandad: "mortandad",
   nacimiento: "nacimiento",
   entrada: "entrada",
   salida: "salida",

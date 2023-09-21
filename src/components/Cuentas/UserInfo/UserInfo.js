@@ -19,6 +19,7 @@ export function UserInfo() {
         </View>
         <View style={styles.containerAvatar}>
           <Avatar.Text
+            style={{ backgroundColor: "steelblue" }}
             size={50}
             label={
               user.nombre && user.apellido
@@ -44,7 +45,7 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 18,
-    color: "indigo",
+    color: "steelblue",
     fontWeight: "400",
   },
   containerUser: {

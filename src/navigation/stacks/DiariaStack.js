@@ -6,6 +6,7 @@ import {
   EntradaScreen,
   SalidaScreen,
   PesajeScreen,
+  DiariaScreen,
 } from "../../screens/Diaria";
 
 const Stack = createNativeStackNavigator();
@@ -21,6 +22,12 @@ export function DiariaStack() {
         },
       }}
     >
+      <Stack.Screen
+        name={screenName.diaria.diaria}
+        component={DiariaScreen}
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen
         name={screenName.diaria.mortandad}
         component={MortandadScreen}

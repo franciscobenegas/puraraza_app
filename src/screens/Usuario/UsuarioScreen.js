@@ -2,18 +2,24 @@ import { View, SafeAreaView, StyleSheet } from "react-native";
 import { useAuth } from "../../hooks";
 import { Button, Divider } from "react-native-paper";
 import { UserInfo, Menu } from "../../components/Cuentas";
+import { globalStyles } from "../../styles";
 
 export function UsuarioScreen() {
   const { logout } = useAuth();
   return (
     <SafeAreaView style={styles.container}>
-      <View style={{ padding: 18, flex: 10 }}>
+      <View style={{ padding: 18, flex: 8 }}>
         <UserInfo />
         <Divider />
         <Menu />
       </View>
-      <View style={{ padding: 18, flex: 0.8 }}>
-        <Button icon="logout" mode="contained" onPress={logout}>
+      <View style={{ padding: 18, flex: 1 }}>
+        <Button
+          icon="logout"
+          mode="contained"
+          onPress={logout}
+          style={globalStyles.form.btnSubmit}
+        >
           Cerrar Sesion
         </Button>
       </View>

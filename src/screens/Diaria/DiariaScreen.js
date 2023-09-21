@@ -1,9 +1,9 @@
 import { View, SafeAreaView, StyleSheet } from "react-native";
 import { useAuth } from "../../hooks";
 import { Divider } from "react-native-paper";
-import { UserInfo, Menu } from "../../components/Configuracion";
+import { UserInfo, Menu } from "../../components/Diaria";
 
-export function ConfiguracionScreen() {
+export function DiariaScreen() {
   const { logout } = useAuth();
   return (
     <SafeAreaView style={styles.container}>

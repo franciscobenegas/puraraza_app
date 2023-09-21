@@ -9,7 +9,7 @@ export function Menu() {
     <ScrollView>
       <List.Section>
         <List.Subheader
-          style={{ fontSize: 16, fontWeight: "bold", color: "indigo" }}
+          style={{ fontSize: 16, fontWeight: "bold", color: "steelblue" }}
         >
           Configuraciones
         </List.Subheader>
