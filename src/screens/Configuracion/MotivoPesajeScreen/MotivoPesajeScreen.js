@@ -9,29 +9,30 @@ import {
 } from "react-native";
 import { IconButton, ActivityIndicator } from "react-native-paper";
 import { size } from "lodash";
-import { causaMortandadCtrl } from "../../../api";
+import { motivoPesajeCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
-import { CausaMortandadList } from "../../../components/Configuracion/CausaMortandad";
+//import { CausaMortandadList } from "../../../components/Configuracion/CausaMortandad";
+import { MotivoPesajeList } from "../../../components/Configuracion/MotivoPesaje";
 
-export function CausaMortandadScreen() {
-  const [causaMortandad, setCausaMortandad] = useState(null);
+export function MotivoPesajeScreen() {
+  const [motivoPesaje, setMotivoPesaje] = useState(null);
   const { user } = useAuth();
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
-      recuperaCausaMortandad();
+      recuperaMotivoPesaje();
     }, [reload])
   );
 
-  const recuperaCausaMortandad = async () => {
-    const response = await causaMortandadCtrl.getAll(user.establesimiento.id);
-    setCausaMortandad(response?.data || []);
+  const recuperaMotivoPesaje = async () => {
+    const response = await motivoPesajeCtrl.getAll(user.establesimiento.id);
+    setMotivoPesaje(response?.data || []);
   };
 
   const goToAddRegistro = () => {
-    navigation.navigate("AddEditCausaMortandad");
+    navigation.navigate("AddEditMotivoPesaje");
   };
 
   const onReload = () => {
@@ -47,20 +48,17 @@ export function CausaMortandadScreen() {
         </View>
       </TouchableOpacity>
 
-      {!causaMortandad ? (
+      {!motivoPesaje ? (
         <ActivityIndicator
           size="large"
           color="#0000ff"
           style={styles.loading}
           animating={true}
         />
-      ) : size(causaMortandad) === 0 ? (
+      ) : size(motivoPesaje) === 0 ? (
         <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
       ) : (
-        <CausaMortandadList
-          causaMortandad={causaMortandad}
-          onReload={onReload}
-        />
+        <MotivoPesajeList motivoPesaje={motivoPesaje} onReload={onReload} />
       )}
     </ScrollView>
   );

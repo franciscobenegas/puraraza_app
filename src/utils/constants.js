@@ -10,6 +10,7 @@ export const ENV = {
     USERS: "users",
     TIPOS_RAZA: "tipo-razas",
     CAUSA_MORTANDAD: "causa-mortandads",
+    MOTIVO_PESAJE: "motivo-pesajes",
   },
   STORAGE: {
     TOKEN: "token",
