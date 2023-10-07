@@ -3,8 +3,7 @@ import { ENV } from "../utils";
 
 async function getMe() {
   try {
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS_ME}`;
-
+    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.USERS_ME}?populate=*`;
     const response = await authFetch(url);
 
     if (response.status !== 200) throw response;

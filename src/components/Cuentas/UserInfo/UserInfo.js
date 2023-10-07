@@ -5,7 +5,6 @@ import { Avatar } from "react-native-paper";
 
 export function UserInfo() {
   const { user } = useAuth();
-  //console.log(user.email[1]);
   return (
     <View style={styles.container}>
       <View style={styles.containerUser}>
@@ -38,6 +37,7 @@ const styles = StyleSheet.create({
     height: 100,
     justifyContent: "center",
     padding: 15,
+    marginTop: 10,
   },
   title: {
     fontSize: 20,

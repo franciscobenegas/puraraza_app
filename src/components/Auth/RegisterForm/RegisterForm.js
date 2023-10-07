@@ -19,7 +19,6 @@ export function RegisterForm(props) {
         await authCtrl.register(email, username, password);
         showLogin();
       } catch (error) {
-        //console.log(error);
         Toast.show("Error al registar al usuario, intente mas tarde", {
           position: Toast.positions.CENTER,
           duration: Toast.durations.LONG,
@@ -51,6 +50,7 @@ export function RegisterForm(props) {
         label="Contraseña"
         style={globalStyles.form.input}
         secureTextEntry
+        autoCapitalize="none"
         onChangeText={(text) => formik.setFieldValue("password", text)}
         value={formik.values.password}
         error={formik.errors.password}
@@ -59,6 +59,7 @@ export function RegisterForm(props) {
         label="Repetir Contraseña"
         style={globalStyles.form.input}
         secureTextEntry
+        autoCapitalize="none"
         onChangeText={(text) => formik.setFieldValue("repeatPassword", text)}
         value={formik.values.repeatPassword}
         error={formik.errors.repeatPassword}
