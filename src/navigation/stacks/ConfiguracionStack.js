@@ -9,11 +9,12 @@ import {
   MotivoSalidaScreen,
   TipoRazaScreen,
   ConfiguracionScreen,
-  //AddEditTipoRazaScreen,
 } from "../../screens/Configuracion";
 import { AddEditTipoRazaScreen } from "../../screens/Configuracion/TipoRazaScreen/AddEditTipoRazaScreen/AddEditTipoRazaScreen";
 import { AddEditCausaMortandadScreen } from "../../screens/Configuracion/CausaMortandadScreen/AddEditCausaMortandadScreen/AddEditCausaMortandadScreen";
 import { AddEditMotivoPesajeScreen } from "../../screens/Configuracion/MotivoPesajeScreen/AddEditMotivoPesajeScreen/AddEditMotivoPesajeScreen";
+import { AddEditMotivoEntradaScreen } from "../../screens/Configuracion/MotivoEntradaScreen/AddEditMotivoEntradaScreen/AddEditMotivoEntradaScreen";
+import { AddEditMotivoSalidaScreen } from "../../screens/Configuracion/MotivoSalidaScreen/AddEditMotivoSalidaScreen/AddEditMotivoSalidaScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -83,6 +84,17 @@ export function ConfiguracionStack() {
         name="AddEditMotivoPesaje"
         component={AddEditMotivoPesajeScreen}
         options={{ title: "Motivo Pesaje (Editar)" }}
+      />
+      <Stack.Screen
+        name="AddEditMotivoEntrada"
+        component={AddEditMotivoEntradaScreen}
+        options={{ title: "Motivo Entrada (Editar)" }}
+      />
+
+      <Stack.Screen
+        name="AddEditMotivoSalida"
+        component={AddEditMotivoSalidaScreen}
+        options={{ title: "Motivo Salida (Editar)" }}
       />
     </Stack.Navigator>
   );

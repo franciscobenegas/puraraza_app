@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
-import React, { useEffect } from "react";
-import { TextInput, Button } from "react-native-paper";
+import React, { useEffect, useState } from "react";
+import { TextInput, Button, Divider } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
 import { initialValues, validationSchema } from "./AddEditTipoRazaScreen.form";
@@ -8,6 +8,8 @@ import { useFormik } from "formik";
 import Toast from "react-native-root-toast";
 import { tiposRazaCtrl } from "../../../../api";
 import { useAuth } from "../../../../hooks";
+import { Picker } from "@react-native-picker/picker";
+import { useTheme } from "react-native-paper";
 
 export function AddEditTipoRazaScreen(props) {
   const {
@@ -16,6 +18,8 @@ export function AddEditTipoRazaScreen(props) {
   const tipoRazaId = params?.tipoRazaId;
   const navigation = useNavigation();
   const { user } = useAuth();
+  const [selectedLanguage, setSelectedLanguage] = useState([]);
+
   useEffect(() => {
     if (tipoRazaId) {
       navigation.setOptions({
@@ -76,6 +80,20 @@ export function AddEditTipoRazaScreen(props) {
         value={formik.values.nombre}
         error={formik.errors.nombre}
       />
+
+      <Picker
+        style={styles.combo}
+        dropdownIconRippleColor="#1cb0f6"
+        selectedValue={selectedLanguage}
+        onValueChange={(itemValue, itemIndex) => setSelectedLanguage(itemValue)}
+        mode="dialog"
+        prompt="Selecione un lenjuage"
+      >
+        <Picker.Item label="Java" value="java" />
+        <Picker.Item label="JavaScript" value="js" />
+        <Picker.Item label="Genexus" value="GX" />
+      </Picker>
+
       <Button
         mode="contained"
         style={[globalStyles.form.btnSubmit, styles.btnSubmit]}
@@ -95,5 +113,8 @@ const styles = StyleSheet.create({
   },
   btnSubmit: {
     marginTop: 50,
+  },
+  combo: {
+    backgroundColor: "#E9E3F0",
   },
 });

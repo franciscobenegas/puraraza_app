@@ -11,7 +11,6 @@ import { IconButton, ActivityIndicator } from "react-native-paper";
 import { size } from "lodash";
 import { motivoPesajeCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
-//import { CausaMortandadList } from "../../../components/Configuracion/CausaMortandad";
 import { MotivoPesajeList } from "../../../components/Configuracion/MotivoPesaje";
 
 export function MotivoPesajeScreen() {

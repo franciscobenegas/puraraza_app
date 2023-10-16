@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
-//import AwesomeIcon from "@react-native-vector-icons/AwesomeIcon";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
-//import MIcon from "react-native-vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { AuthScreen } from "../../screens/Auth";
 import { screenName } from "../../utils";
 import {
   HomeStack,

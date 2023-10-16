@@ -8,7 +8,6 @@ export function HomeStack() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name={screenName.home.home} component={HomeScreen} />
-      <Stack.Screen name={screenName.home.prueba} component={PruebaScreen} />
     </Stack.Navigator>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, SafeAreaView, ScrollView, View } from "react-native";
-import { Grafico } from "../../components/Graficos";
+import { Text, StyleSheet, View } from "react-native";
+import { CarrucelGraficos } from "../../components/Graficos/CarrucelGraficos";
+import { BarraGrafico } from "../../components/Graficos";
 
 export function HomeScreen() {
   return (
@@ -8,11 +9,8 @@ export function HomeScreen() {
       <Text style={styles.txtTituloCentral}>
         Estadisticas {new Date().getFullYear()}
       </Text>
-
-      <Grafico tituloTxt="Mortandad General" porcentaje={5} />
-      <Grafico tituloTxt="Mortandad Ternero" porcentaje={15} />
-      <Grafico tituloTxt="Mortandad Jovenes" porcentaje={35} />
-      <Grafico tituloTxt="Mortandad Adultos" porcentaje={75} />
+      <CarrucelGraficos />
+      <BarraGrafico />
     </View>
   );
 }
@@ -20,10 +18,8 @@ export function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     marginHorizontal: 10,
     marginTop: 30,
-    //backgroundColor: "#fff",
   },
   txtCirculo: {
     fontSize: 35,
@@ -35,7 +31,10 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     color: "#3d5875",
     marginBottom: 20,
-    marginTop: 20,
+    marginTop: 30,
+
+    alignItems: "center",
+    paddingLeft: 30,
   },
   txtTituloMortandad: {
     fontSize: 20,
@@ -51,4 +50,13 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   derecha: { flex: 1 },
+  viewPager: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  page: {
+    justifyContent: "center",
+    alignItems: "center",
+  },
 });
