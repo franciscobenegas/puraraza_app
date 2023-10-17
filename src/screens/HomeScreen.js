@@ -10,8 +10,6 @@ import {
 import { LoginForm, RegisterForm } from "../components/Auth";
 import logo from "../../assets/Logo.png";
 
-//const { width, height } = Dimensions.get("window");
-
 const HomeScreen = () => {
   const [showLogin, setShowLogin] = useState(true);
   const onShowLoginRegister = () => {

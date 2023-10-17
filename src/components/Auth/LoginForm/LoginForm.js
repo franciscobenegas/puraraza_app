@@ -31,14 +31,13 @@ export function LoginForm(props) {
   });
 
   const cambiarIcono = () => {
-    //setShowPass(!showPass);
     setShowPass((prevState) => !prevState);
   };
 
   return (
     <View>
       <TextInput
-        label="Usuario o Email"
+        label="Usuario o Email2"
         style={globalStyles.form.input}
         autoCapitalize="none"
         onChangeText={(text) => formik.setFieldValue("email", text)}
@@ -48,10 +47,8 @@ export function LoginForm(props) {
       <TextInput
         right={
           <TextInput.Icon
-            //icon="eye-off"
             icon={showPass ? "eye" : "eye-off"}
             onPress={cambiarIcono}
-            //color={"red"}
           />
         }
         label="Contraseña"
