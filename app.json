@@ -4,7 +4,7 @@
     "slug": "clienteApp",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon2.png",
+    "icon": "./assets/iconPR.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
