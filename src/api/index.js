@@ -6,3 +6,4 @@ export * from "./causaMortandad";
 export * from "./motivoPesaje";
 export * from "./motivoEntrada";
 export * from "./motivoSalida";
+export * from "./clasificacion";

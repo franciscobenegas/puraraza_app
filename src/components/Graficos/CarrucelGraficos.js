@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { Grafico } from "../../components/Graficos";
 import PagerView from "react-native-pager-view";
 
@@ -23,6 +23,16 @@ export function CarrucelGraficos() {
             textColor="dodgerblue"
             tituloTxt="Mortandad General"
           />
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            ></Text>
+            <Text>Siguiente ➡️</Text>
+          </View>
         </View>
         <View style={styles.page} key="2">
           <Grafico
@@ -34,6 +44,16 @@ export function CarrucelGraficos() {
             textColor="navy"
             tituloTxt="Mortandad Ternero"
           />
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            ></Text>
+            <Text>Siguiente ➡️</Text>
+          </View>
         </View>
         <View style={styles.page} key="3">
           <Grafico
@@ -45,17 +65,37 @@ export function CarrucelGraficos() {
             textColor="indigo"
             tituloTxt="Mortandad Jovenes"
           />
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            ></Text>
+            <Text>Siguiente ➡️</Text>
+          </View>
         </View>
         <View style={styles.page} key="4">
           <Grafico
             size={150}
             strokeWidth={20}
-            text="95%"
-            progressPercent={95}
+            text="10%"
+            progressPercent={10}
             pgColor="darkorange"
             textColor="darkorange"
             tituloTxt="Mortandad Adultos"
           />
+          <View style={{ flexDirection: "row" }}>
+            <Text
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            ></Text>
+            <Text> ⬅️ Atras </Text>
+          </View>
         </View>
       </PagerView>
     </View>

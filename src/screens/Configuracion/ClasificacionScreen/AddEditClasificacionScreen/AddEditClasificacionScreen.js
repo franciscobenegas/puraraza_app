@@ -1,46 +1,50 @@
 import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TextInput, Button, Divider } from "react-native-paper";
+import { TextInput, Button } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
-import { initialValues, validationSchema } from "./AddEditTipoRazaScreen.form";
+import {
+  initialValues,
+  validationSchema,
+} from "./AddEditClasificacionScreen.form";
 import { useFormik } from "formik";
 import Toast from "react-native-root-toast";
-import { tiposRazaCtrl } from "../../../../api";
+import { clasificacionCtrl } from "../../../../api";
 import { useAuth } from "../../../../hooks";
 import { Picker } from "@react-native-picker/picker";
-import { useTheme } from "react-native-paper";
 
-export function AddEditTipoRazaScreen(props) {
+export function AddEditClasificacionScreen(props) {
   const {
     route: { params },
   } = props;
-  const tipoRazaId = params?.tipoRazaId;
+  const clasificacionId = params?.clasificacionId;
   const navigation = useNavigation();
   const { user } = useAuth();
-  const [selectedLanguage, setSelectedLanguage] = useState([]);
+  const [selectedEdad, setSelectedEdad] = useState("Mayor");
 
   useEffect(() => {
-    if (tipoRazaId) {
+    if (clasificacionId) {
       navigation.setOptions({
-        title: "Editar Tipo de Raza",
+        title: "Editar Clasificaicon",
       });
     } else {
       navigation.setOptions({
-        title: "Crear Tipo de Raza",
+        title: "Crear Clasificaicon",
       });
     }
   }, []);
 
   useEffect(() => {
-    if (tipoRazaId) {
-      retornaTipoRaza();
+    if (clasificacionId) {
+      retornaClasificacion();
     }
-  }, [tipoRazaId]);
+  }, [clasificacionId]);
 
-  const retornaTipoRaza = async () => {
-    const response = await tiposRazaCtrl.getId(tipoRazaId);
+  const retornaClasificacion = async () => {
+    const response = await clasificacionCtrl.getId(clasificacionId);
     await formik.setFieldValue("nombre", response.nombre);
+    await formik.setFieldValue("dosAnhos", response.dosAnhos);
+    await formik.setFieldValue("precio", response.precio);
   };
 
   const formik = useFormik({
@@ -49,18 +53,21 @@ export function AddEditTipoRazaScreen(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        if (tipoRazaId) {
+        if (clasificacionId) {
           //TODO: Actualizar Datos
-          await tiposRazaCtrl.update(tipoRazaId, formValue);
+          await clasificacionCtrl.update(clasificacionId, formValue);
         } else {
           let body = {
             data: {
               nombre: formValue.nombre,
+              dosAnhos: formValue.dosAnhos ? formValue.dosAnhos : "Mayor",
+              precio: formValue.precio,
               establesimiento: user.establesimiento.id,
               user_upd: user.username,
             },
           };
-          await tiposRazaCtrl.create(body);
+
+          await clasificacionCtrl.create(body);
         }
         navigation.goBack();
       } catch (error) {
@@ -74,11 +81,35 @@ export function AddEditTipoRazaScreen(props) {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Tipo de Raza"
+        label="Calsificacion"
         style={globalStyles.form.input}
         onChangeText={(text) => formik.setFieldValue("nombre", text)}
         value={formik.values.nombre}
         error={formik.errors.nombre}
+      />
+
+      <Picker
+        style={styles.combo}
+        dropdownIconRippleColor="#1cb0f6"
+        selectedValue={formik.values.dosAnhos}
+        onValueChange={(itemValue) =>
+          formik.setFieldValue("dosAnhos", itemValue)
+        }
+        mode="dialog"
+        prompt="Selecione Edad"
+      >
+        <Picker.Item label="Mayor" value="Mayor" />
+        <Picker.Item label="Menor" value="Menor" />
+        <Picker.Item label="Recien Nacido" value="Recien Nacido" />
+      </Picker>
+
+      <TextInput
+        label="Precio"
+        style={globalStyles.form.input}
+        onChangeText={(text) => formik.setFieldValue("precio", text)}
+        value={formik.values.precio}
+        error={formik.errors.precio}
+        keyboardType="numeric"
       />
 
       <Button
@@ -87,7 +118,7 @@ export function AddEditTipoRazaScreen(props) {
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}
       >
-        {tipoRazaId ? "Actualizar" : "Guardar"}
+        {clasificacionId ? "Actualizar" : "Guardar"}
       </Button>
     </View>
   );
@@ -103,5 +134,6 @@ const styles = StyleSheet.create({
   },
   combo: {
     backgroundColor: "#E9E3F0",
+    marginBottom: 20,
   },
 });
