@@ -13,6 +13,7 @@ export const ENV = {
     MOTIVO_PESAJE: "motivo-pesajes",
     MOTIVO_ENTRADA: "motivo-entradas",
     MOTIVO_SALIDA: "motivo-salidas",
+    CLASIFICACION: "clasificacions",
   },
   STORAGE: {
     TOKEN: "token",

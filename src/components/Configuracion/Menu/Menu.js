@@ -36,14 +36,14 @@ export function Menu() {
         />
         <List.Item
           title="Motivo Pesaje"
-          description="Cambiar Causas de Mortandad del Sistema"
+          description="Registrar Motivo de Pesaje en el Sistema"
           left={(props) => <List.Icon {...props} icon="weight-kilogram" />}
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("motivoPesaje")}
         />
         <List.Item
           title="Motivo Entrada"
-          description="Cambiar Causas de Mortandad del Sistema"
+          description="Registrar Motivo de Entrada en el Sistema"
           left={(props) => (
             <List.Icon {...props} icon="arrow-left-bold-circle" />
           )}
@@ -52,7 +52,7 @@ export function Menu() {
         />
         <List.Item
           title="Motivo Salida"
-          description="Cambiar Causas de Mortandad del Sistema"
+          description="Registrar Motivo de Salida en el Sistema"
           left={(props) => (
             <List.Icon {...props} icon="arrow-right-bold-circle" />
           )}
@@ -61,7 +61,7 @@ export function Menu() {
         />
         <List.Item
           title="Establesimiento"
-          description="Cambiar Causas de Mortandad del Sistema"
+          description="Registrar Establesimiento en el Sistema"
           left={(props) => <List.Icon {...props} icon="home-circle" />}
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("establesimiento")}

@@ -37,7 +37,7 @@ export function LoginForm(props) {
   return (
     <View>
       <TextInput
-        label="Usuario o Email2"
+        label="Usuario o Email"
         style={globalStyles.form.input}
         autoCapitalize="none"
         onChangeText={(text) => formik.setFieldValue("email", text)}
