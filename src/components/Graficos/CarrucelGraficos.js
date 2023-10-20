@@ -23,17 +23,9 @@ export function CarrucelGraficos() {
             textColor="dodgerblue"
             tituloTxt="Mortandad General"
           />
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            ></Text>
-            <Text>Siguiente ➡️</Text>
-          </View>
+          <Text>Siguiente ➡️</Text>
         </View>
+
         <View style={styles.page} key="2">
           <Grafico
             size={150}
@@ -44,16 +36,7 @@ export function CarrucelGraficos() {
             textColor="navy"
             tituloTxt="Mortandad Ternero"
           />
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            ></Text>
-            <Text>Siguiente ➡️</Text>
-          </View>
+          <Text>Siguiente ➡️</Text>
         </View>
         <View style={styles.page} key="3">
           <Grafico
@@ -65,16 +48,7 @@ export function CarrucelGraficos() {
             textColor="indigo"
             tituloTxt="Mortandad Jovenes"
           />
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            ></Text>
-            <Text>Siguiente ➡️</Text>
-          </View>
+          <Text>Siguiente ➡️</Text>
         </View>
         <View style={styles.page} key="4">
           <Grafico
@@ -86,16 +60,7 @@ export function CarrucelGraficos() {
             textColor="darkorange"
             tituloTxt="Mortandad Adultos"
           />
-          <View style={{ flexDirection: "row" }}>
-            <Text
-              style={{
-                flex: 1,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            ></Text>
-            <Text> ⬅️ Atras </Text>
-          </View>
+          <Text> ⬅️ Atras </Text>
         </View>
       </PagerView>
     </View>
@@ -141,6 +106,6 @@ const styles = StyleSheet.create({
   },
   page: {
     justifyContent: "center",
-    alignItems: "center",
+    alignItems: "flex-end",
   },
 });

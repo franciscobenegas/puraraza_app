@@ -1,4 +1,4 @@
-import { View, SafeAreaView, StyleSheet } from "react-native";
+import { View, SafeAreaView, StyleSheet, Alert } from "react-native";
 import { useAuth } from "../../hooks";
 import { Button, Divider } from "react-native-paper";
 import { UserInfo, Menu } from "../../components/Cuentas";
@@ -6,6 +6,25 @@ import { globalStyles } from "../../styles";
 
 export function UsuarioScreen() {
   const { logout } = useAuth();
+
+  const CerrarSession = () => {
+    console.log("Cerrar");
+    Alert.alert(
+      "Cerrar Sesion",
+      "Esta seguro que desea Salir?",
+      [
+        {
+          text: "NO",
+        },
+        {
+          text: "SI",
+          onPress: logout,
+        },
+      ],
+      { canselable: false }
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ padding: 18, flex: 8 }}>
@@ -17,7 +36,7 @@ export function UsuarioScreen() {
         <Button
           icon="logout"
           mode="contained"
-          onPress={logout}
+          onPress={CerrarSession}
           style={globalStyles.form.btnSubmit}
         >
           Cerrar Sesion

@@ -53,11 +53,12 @@ export function Clasificacion(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{clasificacion.nombre}</Text>
-      <Text style={styles.titulo}>Edad: {clasificacion.dosAnhos}</Text>
-      <Text style={styles.titulo}>Cantidad: {clasificacion.stock}</Text>
-      <Text style={styles.titulo}>Costo Unitario: {clasificacion.precio}</Text>
-      <Text>Usuario : {clasificacion.user_upd}</Text>
-      <Text>{clasificacion.updatedAt}</Text>
+      <Text style={styles.subTitulo}>Edad: {clasificacion.dosAnhos}</Text>
+      <Text style={styles.subTitulo}>Cantidad: {clasificacion.stock}</Text>
+      <Text style={styles.subTitulo}>
+        Costo Unitario: {clasificacion.precio}
+      </Text>
+
       <View style={styles.actions}>
         <Button
           mode="contained"
@@ -97,5 +98,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
+  },
+  subTitulo: {
+    paddingBottom: 5,
+    //color: "#ffff",
   },
 });
