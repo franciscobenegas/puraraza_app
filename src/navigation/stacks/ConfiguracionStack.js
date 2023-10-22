@@ -16,6 +16,7 @@ import { AddEditMotivoPesajeScreen } from "../../screens/Configuracion/MotivoPes
 import { AddEditMotivoEntradaScreen } from "../../screens/Configuracion/MotivoEntradaScreen/AddEditMotivoEntradaScreen/AddEditMotivoEntradaScreen";
 import { AddEditMotivoSalidaScreen } from "../../screens/Configuracion/MotivoSalidaScreen/AddEditMotivoSalidaScreen/AddEditMotivoSalidaScreen";
 import { AddEditClasificacionScreen } from "../../screens/Configuracion/ClasificacionScreen/AddEditClasificacionScreen/AddEditClasificacionScreen";
+import { EditEstablesimientoScreen } from "../../screens/Configuracion/EstablesimientoScreen/AddEditEstablesimientoScreen/AddEditEstablesimientoScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -102,6 +103,12 @@ export function ConfiguracionStack() {
         name="AddEditClasificacion"
         component={AddEditClasificacionScreen}
         options={{ title: "Clasificacion (Editar)" }}
+      />
+
+      <Stack.Screen
+        name="AddEditEstablesimiento"
+        component={EditEstablesimientoScreen}
+        options={{ title: "Establesimiento (Editar)" }}
       />
     </Stack.Navigator>
   );

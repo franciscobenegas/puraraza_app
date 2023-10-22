@@ -6,44 +6,44 @@ import { useNavigation } from "@react-navigation/native";
 import {
   initialValues,
   validationSchema,
-} from "./AddEditClasificacionScreen.form";
+} from "./AddEditEstablesimientoScreen.form";
 import { useFormik } from "formik";
 import Toast from "react-native-root-toast";
-import { clasificacionCtrl } from "../../../../api";
+import { establesimientoCtrl } from "../../../../api";
 import { useAuth } from "../../../../hooks";
-import { Picker } from "@react-native-picker/picker";
 
-export function AddEditClasificacionScreen(props) {
+export function EditEstablesimientoScreen(props) {
   const {
     route: { params },
   } = props;
-  const clasificacionId = params?.clasificacionId;
+  const establesimientoId = params?.establesimientoId;
   const navigation = useNavigation();
   const { user } = useAuth();
 
   useEffect(() => {
-    if (clasificacionId) {
+    if (establesimientoId) {
       navigation.setOptions({
-        title: "Editar Clasificaicon",
+        title: "Editar Establesimiento",
       });
     } else {
       navigation.setOptions({
-        title: "Crear Clasificaicon",
+        title: "Crear Establesimiento",
       });
     }
   }, []);
 
   useEffect(() => {
-    if (clasificacionId) {
-      retornaClasificacion();
+    if (establesimientoId) {
+      retornaEstablesimiento();
     }
-  }, [clasificacionId]);
+  }, [establesimientoId]);
 
-  const retornaClasificacion = async () => {
-    const response = await clasificacionCtrl.getId(clasificacionId);
+  const retornaEstablesimiento = async () => {
+    const response = await establesimientoCtrl.getId(establesimientoId);
     await formik.setFieldValue("nombre", response.nombre);
-    await formik.setFieldValue("dosAnhos", response.dosAnhos);
-    await formik.setFieldValue("precio", response.precio);
+    await formik.setFieldValue("ruc", response.ruc);
+    await formik.setFieldValue("direccion", response.direccion);
+    await formik.setFieldValue("telefono", response.telefono);
   };
 
   const formik = useFormik({
@@ -52,21 +52,22 @@ export function AddEditClasificacionScreen(props) {
     validateOnChange: false,
     onSubmit: async (formValue) => {
       try {
-        if (clasificacionId) {
+        if (establesimientoId) {
           //TODO: Actualizar Datos
-          await clasificacionCtrl.update(clasificacionId, formValue);
+          await establesimientoCtrl.update(establesimientoId, formValue);
         } else {
           let body = {
             data: {
               nombre: formValue.nombre,
-              dosAnhos: formValue.dosAnhos ? formValue.dosAnhos : "Mayor",
-              precio: formValue.precio,
+              ruc: formValue.ruc,
+              direccion: formValue.direccion,
+              telefono: formValue.telefono,
               establesimiento: user.establesimiento.id,
               user_upd: user.username,
             },
           };
 
-          await clasificacionCtrl.create(body);
+          await establesimientoCtrl.create(body);
         }
         navigation.goBack();
       } catch (error) {
@@ -80,35 +81,35 @@ export function AddEditClasificacionScreen(props) {
   return (
     <View style={styles.container}>
       <TextInput
-        label="Calsificacion"
+        label="Nombre"
         style={globalStyles.form.input}
         onChangeText={(text) => formik.setFieldValue("nombre", text)}
         value={formik.values.nombre}
         error={formik.errors.nombre}
       />
 
-      <Picker
-        style={styles.combo}
-        dropdownIconRippleColor="#1cb0f6"
-        selectedValue={formik.values.dosAnhos}
-        onValueChange={(itemValue) =>
-          formik.setFieldValue("dosAnhos", itemValue)
-        }
-        mode="dialog"
-        prompt="Selecione Edad"
-      >
-        <Picker.Item label="Mayor" value="Mayor" />
-        <Picker.Item label="Menor" value="Menor" />
-        <Picker.Item label="Recien Nacido" value="Recien Nacido" />
-      </Picker>
+      <TextInput
+        label="RUC"
+        style={globalStyles.form.input}
+        onChangeText={(text) => formik.setFieldValue("ruc", text)}
+        value={formik.values.ruc}
+        error={formik.errors.ruc}
+      />
 
       <TextInput
-        label="Precio"
+        label="Direccion"
         style={globalStyles.form.input}
-        onChangeText={(text) => formik.setFieldValue("precio", text)}
-        value={formik.values.precio}
-        error={formik.errors.precio}
-        keyboardType="numeric"
+        onChangeText={(text) => formik.setFieldValue("direccion", text)}
+        value={formik.values.direccion}
+        error={formik.errors.direccion}
+      />
+
+      <TextInput
+        label="Telefono"
+        style={globalStyles.form.input}
+        onChangeText={(text) => formik.setFieldValue("telefono", text)}
+        value={formik.values.telefono}
+        error={formik.errors.telefono}
       />
 
       <Button
@@ -117,7 +118,7 @@ export function AddEditClasificacionScreen(props) {
         onPress={formik.handleSubmit}
         loading={formik.isSubmitting}
       >
-        {clasificacionId ? "Actualizar" : "Guardar"}
+        {establesimientoId ? "Actualizar" : "Guardar"}
       </Button>
     </View>
   );

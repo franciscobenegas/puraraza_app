@@ -14,6 +14,7 @@ export const ENV = {
     MOTIVO_ENTRADA: "motivo-entradas",
     MOTIVO_SALIDA: "motivo-salidas",
     CLASIFICACION: "clasificacions",
+    ESTABLESIMIENTO: "establesimientos",
   },
   STORAGE: {
     TOKEN: "token",

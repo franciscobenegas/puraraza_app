@@ -2,19 +2,19 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { clasificacionCtrl } from "../../../../../api";
+import { establesimientoCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
 
-export function Clasificacion(props) {
-  const { clasificacion, clasificacionId, onReload } = props;
+export function Establesimiento(props) {
+  const { establesimiento, establesimientoId, onReload } = props;
   const navigation = useNavigation();
   const goToUpdate = () => {
-    navigation.navigate("AddEditClasificacion", { clasificacionId });
+    navigation.navigate("AddEditEstablesimiento", { establesimientoId });
   };
 
-  const deleteClasificacionAlert = () => {
+  const deleteEstablesimientoAlert = () => {
     Alert.alert(
-      `Eliminar ${clasificacion.nombre}`,
+      `Eliminar ${establesimiento.nombre}`,
       "Estas seguro de que deseas elimanr este Dato!!!",
       [
         {
@@ -22,15 +22,15 @@ export function Clasificacion(props) {
         },
         {
           text: "SI",
-          onPress: deleteClasificacion,
+          onPress: deleteEstablesimiento,
         },
       ],
       { canselable: false }
     );
   };
-  const deleteClasificacion = async () => {
+  const deleteEstablesimiento = async () => {
     try {
-      await clasificacionCtrl.delete(clasificacionId);
+      await establesimientoCtrl.delete(establesimientoId);
       onReload();
       Toast.show("Registro eliminado correctamente", {
         position: Toast.positions.CENTER,
@@ -52,12 +52,12 @@ export function Clasificacion(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>{clasificacion.nombre}</Text>
-      <Text style={styles.subTitulo}>Edad: {clasificacion.dosAnhos}</Text>
-      <Text style={styles.subTitulo}>Cantidad: {clasificacion.stock}</Text>
+      <Text style={styles.titulo}>{establesimiento.nombre}</Text>
+      <Text style={styles.subTitulo}>RUC: {establesimiento.ruc}</Text>
       <Text style={styles.subTitulo}>
-        Costo Unitario: {clasificacion.precio}
+        Direccion: {establesimiento.direccion}
       </Text>
+      <Text style={styles.subTitulo}>Telefono: {establesimiento.telefono}</Text>
 
       <View style={styles.actions}>
         <Button
@@ -72,7 +72,7 @@ export function Clasificacion(props) {
           mode="contained"
           icon="delete-outline"
           buttonColor="firebrick"
-          onPress={deleteClasificacionAlert}
+          onPress={deleteEstablesimientoAlert}
         >
           Eliminar
         </Button>
