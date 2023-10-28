@@ -35,7 +35,7 @@ export function LoginForm(props) {
   };
 
   return (
-    <View>
+    <View style={{ flex: 1 }}>
       <TextInput
         label="Usuario o Email"
         style={globalStyles.form.input}

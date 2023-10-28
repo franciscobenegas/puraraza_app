@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { LoginForm, RegisterForm } from "../components/Auth";
 import logo from "../../assets/Logo.png";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 const HomeScreen = () => {
   const [showLogin, setShowLogin] = useState(true);
@@ -18,12 +19,14 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Image source={logo} style={styles.logo} />
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         {showLogin ? (
-          <LoginForm showRegister={onShowLoginRegister} />
+          <View>
+            <Image source={logo} style={styles.logo} />
+            <LoginForm showRegister={onShowLoginRegister} />
+          </View>
         ) : (
           <RegisterForm showLogin={onShowLoginRegister} />
         )}
@@ -39,10 +42,11 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   logo: {
-    width: "100%",
-    height: "25%",
+    width: "90%",
+    height: "60%",
     resizeMode: "cover",
     marginBottom: 20,
+    margin: 20,
   },
 });
 
