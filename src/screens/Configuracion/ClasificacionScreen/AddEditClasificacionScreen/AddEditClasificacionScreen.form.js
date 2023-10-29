@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export function initialValues() {
   return {
     nombre: "",
-    precio: 0,
+    precio: "",
     dosAnhos: "",
   };
 }

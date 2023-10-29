@@ -103,9 +103,10 @@ export function AddEditClasificacionScreen(props) {
       </Picker>
 
       <TextInput
-        label="Precio"
+        label="Precio Estimado"
         style={globalStyles.form.input}
         onChangeText={(text) => formik.setFieldValue("precio", text)}
+        //value={Intl.NumberFormat("de-DE").format(Number(formik.values.precio))}
         value={formik.values.precio}
         error={formik.errors.precio}
         keyboardType="numeric"

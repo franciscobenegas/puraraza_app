@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     flex: 1,
-    marginBottom: 5,
+    marginBottom: 20,
   },
   loading: {
     marginTop: 100,

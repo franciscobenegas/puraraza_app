@@ -53,10 +53,21 @@ export function Clasificacion(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{clasificacion.nombre}</Text>
-      <Text style={styles.subTitulo}>Edad: {clasificacion.dosAnhos}</Text>
-      <Text style={styles.subTitulo}>Cantidad: {clasificacion.stock}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.subTitulo}>Edad: {clasificacion.dosAnhos}</Text>
+        </View>
+        <View style={{ flex: 1 }}>
+          <Text style={styles.subTitulo}>
+            Cantidad:{" "}
+            {Intl.NumberFormat("de-DE").format(Number(clasificacion.stock))}
+          </Text>
+        </View>
+      </View>
+
       <Text style={styles.subTitulo}>
-        Costo Unitario: {clasificacion.precio}
+        Precio Estimado:{" "}
+        {Intl.NumberFormat("de-DE").format(Number(clasificacion.precio))}
       </Text>
 
       <View style={styles.actions}>
@@ -87,7 +98,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#ddd",
     padding: 15,
-    marginBottom: 15,
+    marginBottom: 10,
     backgroundColor: "lightblue",
   },
   titulo: {
@@ -97,7 +108,7 @@ const styles = StyleSheet.create({
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 10,
   },
   subTitulo: {
     paddingBottom: 5,

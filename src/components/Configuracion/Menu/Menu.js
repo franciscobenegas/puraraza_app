@@ -60,6 +60,15 @@ export function Menu() {
           onPress={() => navigation.navigate("motivoSalida")}
         />
         <List.Item
+          title="Propietario"
+          description="Registrar Propietarios en el Sistema"
+          left={(props) => (
+            <List.Icon {...props} icon="account-cowboy-hat-outline" />
+          )}
+          titleStyle={{ fontSize: 20 }}
+          onPress={() => navigation.navigate("clasificacion")}
+        />
+        <List.Item
           title="Establesimiento"
           description="Registrar Establesimiento en el Sistema"
           left={(props) => <List.Icon {...props} icon="home-circle" />}
