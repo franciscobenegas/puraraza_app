@@ -66,7 +66,7 @@ export function Menu() {
             <List.Icon {...props} icon="account-cowboy-hat-outline" />
           )}
           titleStyle={{ fontSize: 20 }}
-          onPress={() => navigation.navigate("clasificacion")}
+          onPress={() => navigation.navigate("propietario")}
         />
         <List.Item
           title="Establesimiento"

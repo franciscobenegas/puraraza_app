@@ -9,6 +9,7 @@ import {
   MotivoSalidaScreen,
   TipoRazaScreen,
   ConfiguracionScreen,
+  PropietarioScreen,
 } from "../../screens/Configuracion";
 import { AddEditTipoRazaScreen } from "../../screens/Configuracion/TipoRazaScreen/AddEditTipoRazaScreen/AddEditTipoRazaScreen";
 import { AddEditCausaMortandadScreen } from "../../screens/Configuracion/CausaMortandadScreen/AddEditCausaMortandadScreen/AddEditCausaMortandadScreen";
@@ -71,6 +72,13 @@ export function ConfiguracionStack() {
         component={TipoRazaScreen}
         options={{ title: "Tipo de Razas" }}
       />
+
+      <Stack.Screen
+        name={"propietario"}
+        component={PropietarioScreen}
+        options={{ title: "Propietario" }}
+      />
+
       <Stack.Screen
         name="AddEditTipoRaza"
         component={AddEditTipoRazaScreen}

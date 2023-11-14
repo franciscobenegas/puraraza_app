@@ -24,6 +24,7 @@ const config = {
   motivoEntrada: "motivoEntrada",
   motivoSalida: "motivoSalida",
   establesimiento: "establesimiento",
+  propietario: "propietario",
 };
 
 const usuario = {

@@ -6,3 +6,4 @@ export * from "./MotivoPesajeScreen";
 export * from "./MotivoSalidaScreen";
 export * from "./TipoRazaScreen";
 export * from "./ConfiguracionScreen";
+export * from "./PropietarioScreen";
