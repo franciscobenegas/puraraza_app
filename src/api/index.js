@@ -8,3 +8,4 @@ export * from "./motivoEntrada";
 export * from "./motivoSalida";
 export * from "./clasificacion";
 export * from "./etablesimiento";
+export * from "./propietario";
