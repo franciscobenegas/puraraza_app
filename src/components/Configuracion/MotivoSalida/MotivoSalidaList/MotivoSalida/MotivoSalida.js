@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { motivoSalidaCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
+import { DateTime } from "luxon";
 
 export function MotivoSalida(props) {
   const { motivoSalida, motivoSalidaId, onReload } = props;
@@ -53,8 +54,14 @@ export function MotivoSalida(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{motivoSalida.nombre}</Text>
-      <Text>Usuario : {motivoSalida.user_upd}</Text>
-      <Text>{motivoSalida.updatedAt}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Usuario : {motivoSalida.user_upd}</Text>
+        <Text>
+          {DateTime.fromISO(motivoSalida.updatedAt).toFormat(
+            "dd/MM/yyyy HH':'mm"
+          )}
+        </Text>
+      </View>
       <View style={styles.actions}>
         <Button
           mode="contained"

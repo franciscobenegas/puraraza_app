@@ -12,6 +12,9 @@ export function Establesimiento(props) {
     navigation.navigate("AddEditEstablesimiento", { establesimientoId });
   };
 
+  //const Departamentos = require("../../../../../../assets/data/departamento.json");
+  //console.log(Departamentos);
+
   const deleteEstablesimientoAlert = () => {
     Alert.alert(
       `Eliminar ${establesimiento.nombre}`,
@@ -57,7 +60,19 @@ export function Establesimiento(props) {
       <Text style={styles.subTitulo}>
         Direccion: {establesimiento.direccion}
       </Text>
+
+      <Text style={styles.subTitulo}>
+        Departamento: {establesimiento.departamento}
+      </Text>
+      <Text style={styles.subTitulo}>Distrito: {establesimiento.distrito}</Text>
+      <Text style={styles.subTitulo}>
+        Localidad: {establesimiento.localidad}
+      </Text>
+
       <Text style={styles.subTitulo}>Telefono: {establesimiento.telefono}</Text>
+      <Text style={styles.tituloPlan}>
+        Tipo de Plan: {establesimiento.plan}
+      </Text>
 
       <View style={styles.actions}>
         <Button
@@ -93,6 +108,7 @@ const styles = StyleSheet.create({
   titulo: {
     fontWeight: "bold",
     paddingBottom: 5,
+    fontSize: 20,
   },
   actions: {
     flexDirection: "row",
@@ -101,5 +117,10 @@ const styles = StyleSheet.create({
   },
   subTitulo: {
     paddingBottom: 5,
+  },
+  tituloPlan: {
+    fontWeight: "bold",
+    paddingBottom: 5,
+    color: "darkgreen",
   },
 });

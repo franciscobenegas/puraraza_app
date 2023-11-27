@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { causaMortandadCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
+import { DateTime } from "luxon";
 
 export function CausaMortandad(props) {
   const { causaMortandad, causaMortandadId, onReload } = props;
@@ -55,8 +56,14 @@ export function CausaMortandad(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{causaMortandad.nombre}</Text>
-      <Text>Usuario : {causaMortandad.user_upd}</Text>
-      <Text>{causaMortandad.updatedAt}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Usuario : {causaMortandad.user_upd}</Text>
+        <Text>
+          {DateTime.fromISO(causaMortandad.updatedAt).toFormat(
+            "dd/MM/yyyy HH':'mm"
+          )}
+        </Text>
+      </View>
       <View style={styles.actions}>
         <Button
           mode="contained"

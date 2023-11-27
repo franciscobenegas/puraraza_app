@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { tiposRazaCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
+import { DateTime } from "luxon";
 
 export function TipoRaza(props) {
   const { tipoRaza, tipoRazaId, onReload } = props;
@@ -55,8 +56,12 @@ export function TipoRaza(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{tipoRaza.nombre}</Text>
-      <Text>Usuario : {tipoRaza.user_upd}</Text>
-      <Text>{tipoRaza.updatedAt}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Usuario : {tipoRaza.user_upd}</Text>
+        <Text>
+          {DateTime.fromISO(tipoRaza.updatedAt).toFormat("dd/MM/yyyy HH':'mm")}
+        </Text>
+      </View>
       <View style={styles.actions}>
         <Button
           mode="contained"

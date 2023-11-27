@@ -4,6 +4,7 @@ import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { motivoPesajeCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
+import { DateTime } from "luxon";
 
 export function MotivoPesaje(props) {
   const { motivoPesaje, motivoPesajeId, onReload } = props;
@@ -55,8 +56,14 @@ export function MotivoPesaje(props) {
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>{motivoPesaje.nombre}</Text>
-      <Text>Usuario : {motivoPesaje.user_upd}</Text>
-      <Text>{motivoPesaje.updatedAt}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Usuario : {motivoPesaje.user_upd}</Text>
+        <Text>
+          {DateTime.fromISO(motivoPesaje.updatedAt).toFormat(
+            "dd/MM/yyyy HH':'mm"
+          )}
+        </Text>
+      </View>
       <View style={styles.actions}>
         <Button
           mode="contained"
