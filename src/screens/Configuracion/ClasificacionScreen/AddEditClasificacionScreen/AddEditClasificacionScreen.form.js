@@ -4,7 +4,6 @@ export function initialValues() {
   return {
     nombre: "",
     precio: "",
-    dosAnhos: "",
   };
 }
 

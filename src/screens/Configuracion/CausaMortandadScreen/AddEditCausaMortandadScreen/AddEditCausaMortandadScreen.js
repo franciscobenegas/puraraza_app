@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button, HelperText } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -80,6 +80,15 @@ export function AddEditCausaMortandadScreen(props) {
         value={formik.values.nombre}
         error={formik.errors.nombre}
       />
+
+      <HelperText
+        style={{ marginTop: -15 }}
+        type="error"
+        visible={formik.errors.nombre ? true : false}
+      >
+        Debe cargar algun dato
+      </HelperText>
+
       <Button
         mode="contained"
         style={[globalStyles.form.btnSubmit, styles.btnSubmit]}

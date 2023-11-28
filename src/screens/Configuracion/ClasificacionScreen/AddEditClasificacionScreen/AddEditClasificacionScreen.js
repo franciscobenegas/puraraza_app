@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React, { useEffect } from "react";
-import { TextInput, Button } from "react-native-paper";
+import { HelperText, TextInput, Button } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -86,6 +86,14 @@ export function AddEditClasificacionScreen(props) {
         value={formik.values.nombre}
         error={formik.errors.nombre}
       />
+
+      <HelperText
+        style={{ marginTop: -15 }}
+        type="error"
+        visible={formik.errors.nombre ? true : false}
+      >
+        Debe cargar algun dato
+      </HelperText>
 
       <Picker
         style={styles.combo}

@@ -19,6 +19,7 @@ const config = {
   config: "Configuraciones",
   clasificacion: "clasificacion",
   tipoRaza: "tipoRaza",
+  potrero: "potrero",
   causaMortandad: "causaMortandad",
   motivoPesaje: "motivoPesaje",
   motivoEntrada: "motivoEntrada",

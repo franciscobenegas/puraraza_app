@@ -28,7 +28,6 @@ export function PropietarioScreen() {
   const recuperaPropietario = async () => {
     const response = await propietarioCtrl.getAll(user.establesimiento.id);
     setPropietario(response?.data || []);
-    console.log(propietario);
   };
 
   const goToAddRegistro = () => {

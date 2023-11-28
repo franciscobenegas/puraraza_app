@@ -10,6 +10,7 @@ import {
   TipoRazaScreen,
   ConfiguracionScreen,
   PropietarioScreen,
+  PotreroScreen,
 } from "../../screens/Configuracion";
 import { AddEditTipoRazaScreen } from "../../screens/Configuracion/TipoRazaScreen/AddEditTipoRazaScreen/AddEditTipoRazaScreen";
 import { AddEditCausaMortandadScreen } from "../../screens/Configuracion/CausaMortandadScreen/AddEditCausaMortandadScreen/AddEditCausaMortandadScreen";
@@ -78,6 +79,12 @@ export function ConfiguracionStack() {
         name={screenName.config.propietario}
         component={PropietarioScreen}
         options={{ title: "Propietario" }}
+      />
+
+      <Stack.Screen
+        name={screenName.config.potrero}
+        component={PotreroScreen}
+        options={{ title: "Potrero" }}
       />
 
       <Stack.Screen

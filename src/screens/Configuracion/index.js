@@ -7,3 +7,4 @@ export * from "./MotivoSalidaScreen";
 export * from "./TipoRazaScreen";
 export * from "./ConfiguracionScreen";
 export * from "./PropietarioScreen";
+export * from "./PotreroScreen";

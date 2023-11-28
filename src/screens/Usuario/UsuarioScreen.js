@@ -8,7 +8,6 @@ export function UsuarioScreen() {
   const { logout } = useAuth();
 
   const CerrarSession = () => {
-    console.log("Cerrar");
     Alert.alert(
       "Cerrar Sesion",
       "Esta seguro que desea Salir?",

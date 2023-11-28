@@ -12,9 +12,6 @@ export function Establesimiento(props) {
     navigation.navigate("AddEditEstablesimiento", { establesimientoId });
   };
 
-  //const Departamentos = require("../../../../../../assets/data/departamento.json");
-  //console.log(Departamentos);
-
   const deleteEstablesimientoAlert = () => {
     Alert.alert(
       `Eliminar ${establesimiento.nombre}`,
@@ -67,6 +64,10 @@ export function Establesimiento(props) {
       <Text style={styles.subTitulo}>Distrito: {establesimiento.distrito}</Text>
       <Text style={styles.subTitulo}>
         Localidad: {establesimiento.localidad}
+      </Text>
+
+      <Text style={styles.subTitulo}>
+        Superficie en Hectareas: {establesimiento.superficie}
       </Text>
 
       <Text style={styles.subTitulo}>Telefono: {establesimiento.telefono}</Text>

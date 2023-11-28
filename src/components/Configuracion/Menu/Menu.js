@@ -13,6 +13,7 @@ export function Menu() {
         >
           Configuraciones
         </List.Subheader>
+
         <List.Item
           title="Clasificacion"
           description="Cambiar las clasificaicones del sistema"
@@ -20,13 +21,23 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("clasificacion")}
         />
+
         <List.Item
-          title="Tipo de Razas"
+          title="Tipos de Razas"
           description="Cambiar Tipos de Razas del Sistema"
-          left={(props) => <List.Icon {...props} icon="atom" />}
+          left={(props) => <List.Icon {...props} icon="cow" />}
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("tipoRaza")}
         />
+
+        <List.Item
+          title="Potreros o Zonas"
+          description="Cambiar los Potreros o Zonas del Sistema"
+          left={(props) => <List.Icon {...props} icon="collage" />}
+          titleStyle={{ fontSize: 20 }}
+          onPress={() => navigation.navigate("potrero")}
+        />
+
         <List.Item
           title="Causa Mortandad"
           description="Cambiar Causas de Mortandad del Sistema"
@@ -34,6 +45,7 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("causaMortandad")}
         />
+
         <List.Item
           title="Motivo Pesaje"
           description="Registrar Motivo de Pesaje en el Sistema"
@@ -41,6 +53,7 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("motivoPesaje")}
         />
+
         <List.Item
           title="Motivo Entrada"
           description="Registrar Motivo de Entrada en el Sistema"
@@ -50,6 +63,7 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("motivoEntrada")}
         />
+
         <List.Item
           title="Motivo Salida"
           description="Registrar Motivo de Salida en el Sistema"
@@ -59,6 +73,7 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("motivoSalida")}
         />
+
         <List.Item
           title="Propietario"
           description="Registrar Propietarios en el Sistema"
@@ -68,6 +83,7 @@ export function Menu() {
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("propietario")}
         />
+
         <List.Item
           title="Establesimiento"
           description="Registrar Establesimiento en el Sistema"

@@ -8,5 +8,5 @@ export function hasTokenExpired(token) {
     return true;
   }
   return false;
-  console.log(tokenDecode);
+  //console.log(tokenDecode);
 }

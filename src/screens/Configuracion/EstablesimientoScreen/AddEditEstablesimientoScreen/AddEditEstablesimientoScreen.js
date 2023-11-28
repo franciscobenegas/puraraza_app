@@ -1,6 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TextInput, Button } from "react-native-paper";
+import { TextInput, Button, HelperText } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
 import {
@@ -55,6 +55,7 @@ export function EditEstablesimientoScreen(props) {
     await formik.setFieldValue("distrito", response.distrito);
     await formik.setFieldValue("localidad", response.localidad);
     await formik.setFieldValue("ruc", response.ruc);
+    await formik.setFieldValue("superficie", response.superficie);
     await formik.setFieldValue("direccion", response.direccion);
     await formik.setFieldValue("telefono", response.telefono);
 
@@ -90,6 +91,7 @@ export function EditEstablesimientoScreen(props) {
               distrito: formValue.distrito,
               localidad: formValue.localidad,
               ruc: formValue.ruc,
+              superficie: formValue.superficie,
               direccion: formValue.direccion,
               telefono: formValue.telefono,
               establesimiento: user.establesimiento.id,
@@ -135,6 +137,15 @@ export function EditEstablesimientoScreen(props) {
           value={formik.values.nombre}
           error={formik.errors.nombre}
         />
+
+        <HelperText
+          style={{ marginTop: -15 }}
+          type="error"
+          visible={formik.errors.nombre ? true : false}
+        >
+          Debe cargar algun dato
+        </HelperText>
+
         <Text style={styles.textoCombo}>Seleccione Departamento</Text>
         <Picker
           style={styles.combo}
@@ -197,6 +208,15 @@ export function EditEstablesimientoScreen(props) {
           onChangeText={(text) => formik.setFieldValue("ruc", text)}
           value={formik.values.ruc}
           error={formik.errors.ruc}
+        />
+
+        <TextInput
+          label="Superficie en Hectareas"
+          style={globalStyles.form.input}
+          onChangeText={(text) => formik.setFieldValue("superficie", text)}
+          keyboardType="numeric"
+          value={formik.values.superficie}
+          error={formik.errors.superficie}
         />
 
         <TextInput

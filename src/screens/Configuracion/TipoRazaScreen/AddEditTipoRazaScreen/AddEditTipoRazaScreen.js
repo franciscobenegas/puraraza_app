@@ -1,6 +1,6 @@
 import { View, StyleSheet } from "react-native";
 import React, { useEffect, useState } from "react";
-import { TextInput, Button, Divider } from "react-native-paper";
+import { TextInput, Button, HelperText } from "react-native-paper";
 import { globalStyles } from "../../../../styles";
 import { useNavigation } from "@react-navigation/native";
 import { initialValues, validationSchema } from "./AddEditTipoRazaScreen.form";
@@ -8,8 +8,6 @@ import { useFormik } from "formik";
 import Toast from "react-native-root-toast";
 import { tiposRazaCtrl } from "../../../../api";
 import { useAuth } from "../../../../hooks";
-import { Picker } from "@react-native-picker/picker";
-import { useTheme } from "react-native-paper";
 
 export function AddEditTipoRazaScreen(props) {
   const {
@@ -80,6 +78,14 @@ export function AddEditTipoRazaScreen(props) {
         value={formik.values.nombre}
         error={formik.errors.nombre}
       />
+
+      <HelperText
+        style={{ marginTop: -15 }}
+        type="error"
+        visible={formik.errors.nombre ? true : false}
+      >
+        Debe cargar algun dato
+      </HelperText>
 
       <Button
         mode="contained"
