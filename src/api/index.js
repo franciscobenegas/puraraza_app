@@ -9,3 +9,4 @@ export * from "./motivoSalida";
 export * from "./clasificacion";
 export * from "./etablesimiento";
 export * from "./propietario";
+export * from "./potrero";

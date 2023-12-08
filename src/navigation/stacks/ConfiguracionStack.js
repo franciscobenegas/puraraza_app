@@ -19,6 +19,7 @@ import { AddEditMotivoEntradaScreen } from "../../screens/Configuracion/MotivoEn
 import { AddEditMotivoSalidaScreen } from "../../screens/Configuracion/MotivoSalidaScreen/AddEditMotivoSalidaScreen/AddEditMotivoSalidaScreen";
 import { AddEditClasificacionScreen } from "../../screens/Configuracion/ClasificacionScreen/AddEditClasificacionScreen/AddEditClasificacionScreen";
 import { AddEditPropietarioScreen } from "../../screens/Configuracion/PropietarioScreen/AddEditPropietarioScreen/AddEditPropietarioScreen";
+import { AddEditPotreroScreen } from "../../screens/Configuracion/PotreroScreen/AddEditPotreroScreen/AddEditPotreroScreen";
 import { EditEstablesimientoScreen } from "../../screens/Configuracion/EstablesimientoScreen/AddEditEstablesimientoScreen/AddEditEstablesimientoScreen";
 
 const Stack = createNativeStackNavigator();
@@ -131,6 +132,12 @@ export function ConfiguracionStack() {
         name="AddEditPropietario"
         component={AddEditPropietarioScreen}
         options={{ title: "Propietario (Editar)" }}
+      />
+
+      <Stack.Screen
+        name="AddEditPotreroScreen"
+        component={AddEditPotreroScreen}
+        options={{ title: "Potrero (Editar)" }}
       />
     </Stack.Navigator>
   );

@@ -1,7 +1,7 @@
 import { authFetch } from "../lib";
 import { ENV } from "../utils";
 
-async function getAllpotrero(establesimientoId) {
+async function getAll(establesimientoId) {
   try {
     const filters = `filters[establesimiento][id][$eq]=${establesimientoId}&populate=*&sort=createdAt:desc`;
     const url = `${ENV.API_URL}/${ENV.ENDPOINTS.POTRERO}?${filters}`;
@@ -76,7 +76,7 @@ async function deletePotrero(potreroId) {
 }
 
 export const potreroCtrl = {
-  getAll: getAllPotrero,
+  getAll: getAll,
   getId: getPotreroById,
   create: createPotrero,
   update: updatePotrero,

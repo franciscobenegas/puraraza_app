@@ -1,16 +1,17 @@
 import { View, StyleSheet } from "react-native";
 import { map } from "lodash";
-import { MotivoSalida } from "./MotivoSalida";
+//import { PotreroList } from "./PotreroList";
+import { Potrero } from "./Potrero";
 
-export function MotivoSalidaList(props) {
-  const { motivoSalida, onReload } = props;
+export function PotreroList(props) {
+  const { potrero, onReload } = props;
   return (
     <View style={styles.container}>
-      {map(motivoSalida, (item) => (
-        <MotivoSalida
+      {map(potrero, (item) => (
+        <Potrero
           key={item.id}
-          motivoSalidaId={item.id}
-          motivoSalida={item.attributes}
+          potreroId={item.id}
+          potrero={item.attributes}
           onReload={onReload}
         />
       ))}
