@@ -20,7 +20,7 @@ export function ClasificacionList(props) {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 10,
-    marginBottom: 25,
+    marginTop: 2,
+    marginBottom: 70,
   },
 });

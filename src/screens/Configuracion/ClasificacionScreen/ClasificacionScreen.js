@@ -1,4 +1,5 @@
 import { useState, useCallback } from "react";
+import React from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   View,
@@ -6,8 +7,9 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  SafeAreaView,
 } from "react-native";
-import { IconButton, ActivityIndicator } from "react-native-paper";
+import { IconButton, ActivityIndicator, AnimatedFAB } from "react-native-paper";
 import { size } from "lodash";
 import { clasificacionCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
@@ -18,6 +20,18 @@ export function ClasificacionScreen() {
   const { user } = useAuth();
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
+  const [isExtended, setIsExtended] = React.useState(true);
+
+  const isIOS = Platform.OS === "ios";
+
+  const onScroll = ({ nativeEvent }) => {
+    const currentScrollPosition =
+      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
+
+    setIsExtended(currentScrollPosition <= 0);
+  };
+
+  //const fabStyle = { [animateFrom]: 16 };
 
   useFocusEffect(
     useCallback(() => {
@@ -39,27 +53,36 @@ export function ClasificacionScreen() {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <TouchableOpacity onPress={goToAddRegistro}>
-        <View style={styles.addDatos}>
-          <Text style={styles.addText}>Añadir Nuevo Registro</Text>
-          <IconButton icon="arrow-right-thick" size={25} color="#000" />
-        </View>
-      </TouchableOpacity>
-
-      {!clasificacion ? (
-        <ActivityIndicator
-          size="large"
-          color="#0000ff"
-          style={styles.loading}
-          animating={true}
-        />
-      ) : size(clasificacion) === 0 ? (
-        <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
-      ) : (
-        <ClasificacionList clasificacion={clasificacion} onReload={onReload} />
-      )}
-    </ScrollView>
+    <SafeAreaView style={styles.containerSA}>
+      <ScrollView style={styles.container}>
+        {!clasificacion ? (
+          <ActivityIndicator
+            size="large"
+            color="#0000ff"
+            style={styles.loading}
+            animating={true}
+          />
+        ) : size(clasificacion) === 0 ? (
+          <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
+        ) : (
+          <ClasificacionList
+            clasificacion={clasificacion}
+            onReload={onReload}
+          />
+        )}
+      </ScrollView>
+      <AnimatedFAB
+        icon={"plus"}
+        label={"Añadir Registro"}
+        extended={true}
+        onPress={goToAddRegistro}
+        visible={true}
+        animateFrom={"right"}
+        //iconMode={"static"}
+        style={styles.fabStyle}
+        color="#fff"
+      />
+    </SafeAreaView>
   );
 }
 
@@ -91,5 +114,14 @@ const styles = StyleSheet.create({
   addText: {
     fontSize: 16,
     fontWeight: "bold",
+  },
+  containerSA: {
+    flexGrow: 1,
+  },
+  fabStyle: {
+    bottom: 5,
+    right: 16,
+    position: "absolute",
+    backgroundColor: "darkcyan",
   },
 });
