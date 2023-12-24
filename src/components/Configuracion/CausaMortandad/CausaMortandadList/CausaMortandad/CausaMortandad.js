@@ -17,7 +17,7 @@ export function CausaMortandad(props) {
   const deleteCausaMortandadAlert = () => {
     Alert.alert(
       `Eliminar ${causaMortandad.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

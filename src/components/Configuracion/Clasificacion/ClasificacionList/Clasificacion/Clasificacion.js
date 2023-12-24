@@ -15,7 +15,7 @@ export function Clasificacion(props) {
   const deleteClasificacionAlert = () => {
     Alert.alert(
       `Eliminar ${clasificacion.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

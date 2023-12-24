@@ -1,32 +1,31 @@
 import { useState, useCallback } from "react";
-import React from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import { ScrollView, Text, StyleSheet, SafeAreaView } from "react-native";
 import { ActivityIndicator, AnimatedFAB } from "react-native-paper";
 import { size } from "lodash";
-import { MortandadCtrl } from "../../../api";
+import { nacimientoCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
-import { MortandadList } from "../../../components/Diaria/Mortandad";
+import { NacimientoList } from "../../../components/Configuracion/Nacimiento";
 
-export function MortandadScreen() {
-  const [mortandad, setMortandad] = useState(null);
+export const NacimientoScreen = () => {
+  const [nacimiento, setNacimiento] = useState(null);
   const { user } = useAuth();
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
 
   useFocusEffect(
     useCallback(() => {
-      recuperaMortandad();
+      recuperaNacimiento();
     }, [reload])
   );
 
-  const recuperaMortandad = async () => {
-    const response = await MortandadCtrl.getAll(user.establesimiento.id);
-    setMortandad(response?.data || []);
+  const recuperaNacimiento = async () => {
+    const response = await nacimientoCtrl.getAll(user.establesimiento.id);
+    setNacimiento(response?.data || []);
   };
 
   const goToAddRegistro = () => {
-    navigation.navigate("AddEditMortandad");
+    navigation.navigate("AddEditNacimientoScreen");
   };
 
   const onReload = () => {
@@ -36,17 +35,17 @@ export function MortandadScreen() {
   return (
     <SafeAreaView style={styles.containerSA}>
       <ScrollView style={styles.container}>
-        {!mortandad ? (
+        {!nacimiento ? (
           <ActivityIndicator
             size="large"
             color="#0000ff"
             style={styles.loading}
             animating={true}
           />
-        ) : size(mortandad) === 0 ? (
+        ) : size(nacimiento) === 0 ? (
           <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
         ) : (
-          <MortandadList mortandad={mortandad} onReload={onReload} />
+          <NacimientoList nacimiento={nacimiento} onReload={onReload} />
         )}
       </ScrollView>
       <AnimatedFAB
@@ -61,7 +60,7 @@ export function MortandadScreen() {
       />
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {

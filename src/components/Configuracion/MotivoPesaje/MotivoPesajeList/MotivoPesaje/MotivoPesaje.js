@@ -17,7 +17,7 @@ export function MotivoPesaje(props) {
   const deleteMotivoPesajeAlert = () => {
     Alert.alert(
       `Eliminar ${motivoPesaje.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

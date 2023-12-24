@@ -2,19 +2,20 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { establesimientoCtrl } from "../../../../../api";
+import { nacimientoCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
+import { DateTime } from "luxon";
 
-export function Establesimiento(props) {
-  const { establesimiento, establesimientoId, onReload } = props;
+export const Nacimiento = (props) => {
+  const { nacimiento, nacimientoId, onReload } = props;
   const navigation = useNavigation();
   const goToUpdate = () => {
-    navigation.navigate("AddEditEstablesimiento", { establesimientoId });
+    navigation.navigate("AddEditNacimientoScreen", { nacimientoId });
   };
 
-  const deleteEstablesimientoAlert = () => {
+  const deleteNacimientoAlert = () => {
     Alert.alert(
-      `Eliminar ${establesimiento.nombre}`,
+      `Eliminar ${nacimiento.nombre}`,
       "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
@@ -22,15 +23,16 @@ export function Establesimiento(props) {
         },
         {
           text: "SI",
-          onPress: deleteEstablesimiento,
+          onPress: deleteNacimiento,
         },
       ],
       { canselable: false }
     );
   };
-  const deleteEstablesimiento = async () => {
+
+  const deleteNacimiento = async () => {
     try {
-      await establesimientoCtrl.delete(establesimientoId);
+      await nacimientoCtrl.delete(nacimientoId);
       onReload();
       Toast.show("Registro eliminado correctamente", {
         position: Toast.positions.CENTER,
@@ -52,29 +54,30 @@ export function Establesimiento(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>{establesimiento.nombre}</Text>
-      <Text style={styles.subTitulo}>RUC: {establesimiento.ruc}</Text>
-      <Text style={styles.subTitulo}>
-        Direccion: {establesimiento.direccion}
-      </Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text style={styles.titulo}>#Caravana : {nacimiento.nroCaravana}</Text>
+        <Text style={styles.titulo}>Fecha: {nacimiento.fecha}</Text>
+      </View>
+      <Text>#Caravana Madre : {nacimiento.nroCaravanaMadre}</Text>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Peso: {nacimiento.peso} Kg.</Text>
+        <Text>Sexo: {nacimiento.sexo}</Text>
+      </View>
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Tipo Parto : {nacimiento.tipo_Parto}</Text>
+        <Text>
+          Tipo de Raza : {nacimiento.tipo_raza.data.attributes.nombre}
+        </Text>
+      </View>
 
-      <Text style={styles.subTitulo}>
-        Departamento: {establesimiento.departamento}
-      </Text>
-      <Text style={styles.subTitulo}>Distrito: {establesimiento.distrito}</Text>
-      <Text style={styles.subTitulo}>
-        Localidad: {establesimiento.localidad}
-      </Text>
-
-      <Text style={styles.subTitulo}>
-        Superficie en Hectareas: {establesimiento.superficie}
-      </Text>
-
-      <Text style={styles.subTitulo}>Telefono: {establesimiento.telefono}</Text>
-      <Text style={styles.tituloPlan}>
-        Tipo de Plan: {establesimiento.plan}
-      </Text>
-
+      <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+        <Text>Usuario : {nacimiento.user_upd}</Text>
+        <Text>
+          {DateTime.fromISO(nacimiento.updatedAt).toFormat(
+            "dd/MM/yyyy HH':'mm"
+          )}
+        </Text>
+      </View>
       <View style={styles.actions}>
         <Button
           mode="contained"
@@ -88,14 +91,14 @@ export function Establesimiento(props) {
           mode="contained"
           icon="delete-outline"
           buttonColor="firebrick"
-          onPress={deleteEstablesimientoAlert}
+          onPress={deleteNacimientoAlert}
         >
           Eliminar
         </Button>
       </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -109,19 +112,10 @@ const styles = StyleSheet.create({
   titulo: {
     fontWeight: "bold",
     paddingBottom: 5,
-    fontSize: 20,
   },
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 20,
-  },
-  subTitulo: {
-    paddingBottom: 5,
-  },
-  tituloPlan: {
-    fontWeight: "bold",
-    paddingBottom: 5,
-    color: "darkgreen",
   },
 });

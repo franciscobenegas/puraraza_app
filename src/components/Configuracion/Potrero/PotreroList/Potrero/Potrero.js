@@ -16,7 +16,7 @@ export function Potrero(props) {
   const deletePotreroAlert = () => {
     Alert.alert(
       `Eliminar ${potrero.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

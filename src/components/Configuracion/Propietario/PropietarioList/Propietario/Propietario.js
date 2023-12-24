@@ -16,7 +16,7 @@ export function Propietario(props) {
   const deletePropietarioAlert = () => {
     Alert.alert(
       `Eliminar ${propietario.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

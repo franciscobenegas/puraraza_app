@@ -29,6 +29,7 @@ export function MotivoSalidaScreen() {
     const response = await motivoSalidaCtrl.getAll(user.establesimiento.id);
     setMotivoSalida(response?.data || []);
   };
+
   const goToAddRegistro = () => {
     navigation.navigate("AddEditMotivoSalida");
   };

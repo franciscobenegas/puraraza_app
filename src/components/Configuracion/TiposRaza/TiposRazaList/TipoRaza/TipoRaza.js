@@ -17,7 +17,7 @@ export function TipoRaza(props) {
   const deleteTipoRazaAlert = () => {
     Alert.alert(
       `Eliminar ${tipoRaza.nombre}`,
-      "Estas seguro de que deseas elimanr este Dato!!!",
+      "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
           text: "NO",

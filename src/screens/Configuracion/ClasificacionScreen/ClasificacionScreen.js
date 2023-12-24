@@ -1,15 +1,8 @@
 import { useState, useCallback } from "react";
 import React from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import {
-  View,
-  ScrollView,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  SafeAreaView,
-} from "react-native";
-import { IconButton, ActivityIndicator, AnimatedFAB } from "react-native-paper";
+import { ScrollView, Text, StyleSheet, SafeAreaView } from "react-native";
+import { ActivityIndicator, AnimatedFAB } from "react-native-paper";
 import { size } from "lodash";
 import { clasificacionCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
@@ -20,18 +13,6 @@ export function ClasificacionScreen() {
   const { user } = useAuth();
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
-  const [isExtended, setIsExtended] = React.useState(true);
-
-  const isIOS = Platform.OS === "ios";
-
-  const onScroll = ({ nativeEvent }) => {
-    const currentScrollPosition =
-      Math.floor(nativeEvent?.contentOffset?.y) ?? 0;
-
-    setIsExtended(currentScrollPosition <= 0);
-  };
-
-  //const fabStyle = { [animateFrom]: 16 };
 
   useFocusEffect(
     useCallback(() => {
@@ -78,7 +59,6 @@ export function ClasificacionScreen() {
         onPress={goToAddRegistro}
         visible={true}
         animateFrom={"right"}
-        //iconMode={"static"}
         style={styles.fabStyle}
         color="#fff"
       />

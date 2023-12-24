@@ -2,19 +2,19 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { establesimientoCtrl } from "../../../../../api";
+import { MortandadCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
 
-export function Establesimiento(props) {
-  const { establesimiento, establesimientoId, onReload } = props;
+export function Mortandad(props) {
+  const { mortandad, mortandadId, onReload } = props;
   const navigation = useNavigation();
   const goToUpdate = () => {
-    navigation.navigate("AddEditEstablesimiento", { establesimientoId });
+    navigation.navigate("AddEditMortandad", { mortandadId });
   };
 
-  const deleteEstablesimientoAlert = () => {
+  const deleteMortandadAlert = () => {
     Alert.alert(
-      `Eliminar ${establesimiento.nombre}`,
+      `Eliminar ${mortandad.nombre}`,
       "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
@@ -22,15 +22,16 @@ export function Establesimiento(props) {
         },
         {
           text: "SI",
-          onPress: deleteEstablesimiento,
+          onPress: deleteMortandad,
         },
       ],
       { canselable: false }
     );
   };
-  const deleteEstablesimiento = async () => {
+
+  const deleteMortandad = async () => {
     try {
-      await establesimientoCtrl.delete(establesimientoId);
+      await MortandadCtrl.delete(mortandadId);
       onReload();
       Toast.show("Registro eliminado correctamente", {
         position: Toast.positions.CENTER,
@@ -52,28 +53,16 @@ export function Establesimiento(props) {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.titulo}>{establesimiento.nombre}</Text>
-      <Text style={styles.subTitulo}>RUC: {establesimiento.ruc}</Text>
-      <Text style={styles.subTitulo}>
-        Direccion: {establesimiento.direccion}
+      <Text style={styles.titulo}>{mortandad.NroCaravana}</Text>
+      <Text style={styles.titulo}>{mortandad.NroCaravanaMadre}</Text>
+      <Text style={styles.titulo}>{mortandad.NroCaravanaPadre}</Text>
+      <Text style={styles.titulo}>
+        {mortandad.causa_mortandad.data.attributes.nombre}
       </Text>
-
-      <Text style={styles.subTitulo}>
-        Departamento: {establesimiento.departamento}
+      <Text style={styles.titulo}>
+        {mortandad.clasificacion.data.attributes.nombre}
       </Text>
-      <Text style={styles.subTitulo}>Distrito: {establesimiento.distrito}</Text>
-      <Text style={styles.subTitulo}>
-        Localidad: {establesimiento.localidad}
-      </Text>
-
-      <Text style={styles.subTitulo}>
-        Superficie en Hectareas: {establesimiento.superficie}
-      </Text>
-
-      <Text style={styles.subTitulo}>Telefono: {establesimiento.telefono}</Text>
-      <Text style={styles.tituloPlan}>
-        Tipo de Plan: {establesimiento.plan}
-      </Text>
+      <Text style={styles.titulo}>{mortandad.fecha}</Text>
 
       <View style={styles.actions}>
         <Button
@@ -84,11 +73,12 @@ export function Establesimiento(props) {
         >
           Editar
         </Button>
+
         <Button
           mode="contained"
           icon="delete-outline"
           buttonColor="firebrick"
-          onPress={deleteEstablesimientoAlert}
+          onPress={deleteMortandadAlert}
         >
           Eliminar
         </Button>
@@ -103,25 +93,19 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     borderColor: "#ddd",
     padding: 15,
-    marginBottom: 15,
+    marginBottom: 10,
     backgroundColor: "lightblue",
   },
   titulo: {
     fontWeight: "bold",
     paddingBottom: 5,
-    fontSize: 20,
   },
   actions: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 20,
+    marginTop: 10,
   },
   subTitulo: {
     paddingBottom: 5,
-  },
-  tituloPlan: {
-    fontWeight: "bold",
-    paddingBottom: 5,
-    color: "darkgreen",
   },
 });

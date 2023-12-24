@@ -15,14 +15,14 @@ export function Menu() {
         </List.Subheader>
         <List.Item
           title="Mortandad"
-          description="Registro de las Mortandades de los animales"
+          description="Registro de las Mortandades animales"
           left={(props) => <List.Icon {...props} icon="emoticon-dead" />}
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("mortandad")}
         />
         <List.Item
           title="Nacimiento"
-          description="Registro de las Naciminetos de los animales"
+          description="Registro de los Naciminetos animales"
           left={(props) => <List.Icon {...props} icon="plus-circle" />}
           titleStyle={{ fontSize: 20 }}
           onPress={() => navigation.navigate("nacimiento")}

@@ -10,3 +10,5 @@ export * from "./clasificacion";
 export * from "./etablesimiento";
 export * from "./propietario";
 export * from "./potrero";
+export * from "./mortandad";
+export * from "./nacimiento";
