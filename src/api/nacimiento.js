@@ -33,7 +33,7 @@ async function createData(data) {
 
 async function getById(identificador) {
   try {
-    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.NACIMIENTO}/${identificador}`;
+    const url = `${ENV.API_URL}/${ENV.ENDPOINTS.NACIMIENTO}/${identificador}?populate=*`;
     const response = await authFetch(url);
     if (response.status !== 200) throw response;
     const result = await response.json();
