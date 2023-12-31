@@ -136,7 +136,10 @@ export const AddEditNacimientoScreen = (props) => {
             let bodyCla = {
               stock: parseInt(resultData[0]?.attributes.stock) + 1,
             };
-            await clasificacionCtrl.update(resultData[0]?.id, bodyCla);
+            let idClasificacion = resultData[0]?.id;
+            if (idClasificacion !== 0) {
+              await clasificacionCtrl.update(idClasificacion, bodyCla);
+            }
           } catch (error) {
             Toast.show("Error al actualizar el Stock", error, {
               position: Toast.positions.CENTER,

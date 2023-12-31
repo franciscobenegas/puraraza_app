@@ -3,7 +3,7 @@ import { map } from "lodash";
 import { Nacimiento } from "./Nacimiento";
 
 export const NacimientoList = (props) => {
-  const { nacimiento, onReload } = props;
+  const { nacimiento, onReload, clasificacionMenor } = props;
   return (
     <View style={styles.container}>
       {map(nacimiento, (item) => (
@@ -11,6 +11,7 @@ export const NacimientoList = (props) => {
           key={item.id}
           nacimientoId={item.id}
           nacimiento={item.attributes}
+          clasificacionMenor={clasificacionMenor}
           onReload={onReload}
         />
       ))}

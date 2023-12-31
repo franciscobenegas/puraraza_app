@@ -1,4 +1,4 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
 import {
   ScrollView,
@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { ActivityIndicator, AnimatedFAB } from "react-native-paper";
 import { size } from "lodash";
-import { nacimientoCtrl } from "../../../api";
+import { nacimientoCtrl, clasificacionCtrl } from "../../../api";
 import { useAuth } from "../../../hooks";
 import { NacimientoList } from "../../../components/Configuracion/Nacimiento";
 
@@ -19,12 +19,26 @@ export const NacimientoScreen = () => {
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
   const [refrescar, setRefrescar] = useState(true);
+  const [clasificacionMenor, setClasificacionMenor] = useState([]);
 
   useFocusEffect(
     useCallback(() => {
       recuperaNacimiento();
     }, [reload])
   );
+
+  useEffect(() => {
+    recuperaClasificacion();
+  }, []);
+
+  const recuperaClasificacion = async () => {
+    const response = await clasificacionCtrl.getAll(user.establesimiento.id);
+    const result = await response.data;
+    const dataMenor = result.filter(
+      (item) => item.attributes.dosAnhos === "Recien Nacido"
+    );
+    setClasificacionMenor(dataMenor);
+  };
 
   const recuperaNacimiento = async () => {
     setRefrescar(true);
@@ -70,7 +84,11 @@ export const NacimientoScreen = () => {
         ) : size(nacimiento) === 0 ? (
           <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
         ) : (
-          <NacimientoList nacimiento={nacimiento} onReload={onReload} />
+          <NacimientoList
+            nacimiento={nacimiento}
+            onReload={onReload}
+            clasificacionMenor={clasificacionMenor}
+          />
         )}
       </ScrollView>
       <AnimatedFAB

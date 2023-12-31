@@ -2,12 +2,12 @@ import { View, Text, StyleSheet, Alert } from "react-native";
 import React from "react";
 import { Button } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
-import { nacimientoCtrl } from "../../../../../api";
+import { nacimientoCtrl, clasificacionCtrl } from "../../../../../api";
 import Toast from "react-native-root-toast";
 import { DateTime } from "luxon";
 
 export const Nacimiento = (props) => {
-  const { nacimiento, nacimientoId, onReload } = props;
+  const { nacimiento, nacimientoId, clasificacionMenor, onReload } = props;
   const navigation = useNavigation();
   const goToUpdate = () => {
     navigation.navigate("AddEditNacimientoScreen", { nacimientoId });
@@ -33,7 +33,29 @@ export const Nacimiento = (props) => {
   const deleteNacimiento = async () => {
     try {
       await nacimientoCtrl.delete(nacimientoId);
+      try {
+        let resultData = clasificacionMenor.filter((item) =>
+          item.attributes.nombre
+            .toLowerCase()
+            .match(nacimiento.sexo.toLowerCase())
+        );
+        console.log("---------------------");
+        console.log(resultData[0]?.attributes.stock);
+        console.log(resultData[0]?.id);
+        console.log("---------------------");
 
+        let bodyCla = {
+          stock: parseInt(resultData[0]?.attributes.stock) - 1,
+        };
+
+        let idClasificacion = resultData[0]?.id;
+
+        if (idClasificacion !== 0) {
+          await clasificacionCtrl.update(idClasificacion, bodyCla);
+        }
+      } catch (error) {
+        console.log(error);
+      }
       onReload();
       Toast.show("Registro eliminado correctamente", {
         position: Toast.positions.CENTER,
