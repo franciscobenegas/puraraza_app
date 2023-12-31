@@ -1,6 +1,12 @@
 import { useState, useCallback } from "react";
 import { useFocusEffect, useNavigation } from "@react-navigation/native";
-import { ScrollView, Text, StyleSheet, SafeAreaView } from "react-native";
+import {
+  ScrollView,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  RefreshControl,
+} from "react-native";
 import { ActivityIndicator, AnimatedFAB } from "react-native-paper";
 import { size } from "lodash";
 import { nacimientoCtrl } from "../../../api";
@@ -12,6 +18,7 @@ export const NacimientoScreen = () => {
   const { user } = useAuth();
   const navigation = useNavigation();
   const [reload, setReload] = useState(false);
+  const [refrescar, setRefrescar] = useState(true);
 
   useFocusEffect(
     useCallback(() => {
@@ -20,8 +27,10 @@ export const NacimientoScreen = () => {
   );
 
   const recuperaNacimiento = async () => {
+    setRefrescar(true);
     const response = await nacimientoCtrl.getAll(user.establesimiento.id);
     setNacimiento(response?.data || []);
+    setRefrescar(false);
   };
 
   const goToAddRegistro = () => {
@@ -34,14 +43,30 @@ export const NacimientoScreen = () => {
 
   return (
     <SafeAreaView style={styles.containerSA}>
-      <ScrollView style={styles.container}>
-        {!nacimiento ? (
-          <ActivityIndicator
+      <ScrollView
+        style={styles.container}
+        refreshControl={
+          <RefreshControl
+            refreshing={refrescar}
+            onRefresh={recuperaNacimiento}
             size="large"
-            color="#0000ff"
-            style={styles.loading}
-            animating={true}
+            //progressBackgroundColor="steelblue"
+            colors={["navy", "navy", "navy"]}
           />
+        }
+      >
+        {!nacimiento ? (
+          <Text
+            style={{
+              marginTop: 90,
+              marginLeft: 100,
+              fontSize: 16,
+              fontWeight: "bold",
+              color: "steelblue",
+            }}
+          >
+            Cargando Datos ...
+          </Text>
         ) : size(nacimiento) === 0 ? (
           <Text style={styles.notipoRaza}> No tiene registros cargados...</Text>
         ) : (

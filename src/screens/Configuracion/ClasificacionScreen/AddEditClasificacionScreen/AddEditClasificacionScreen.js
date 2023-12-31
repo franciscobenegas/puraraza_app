@@ -54,6 +54,7 @@ export function AddEditClasificacionScreen(props) {
       try {
         if (clasificacionId) {
           //TODO: Actualizar Datos
+          console.log(formValue);
           await clasificacionCtrl.update(clasificacionId, formValue);
         } else {
           let body = {

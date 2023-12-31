@@ -9,7 +9,11 @@ import {
 } from "./AddEditNacimientoScreen.form";
 import { useFormik } from "formik";
 import Toast from "react-native-root-toast";
-import { nacimientoCtrl, tiposRazaCtrl } from "../../../../api";
+import {
+  nacimientoCtrl,
+  tiposRazaCtrl,
+  clasificacionCtrl,
+} from "../../../../api";
 import { useAuth } from "../../../../hooks";
 import DateTimePiker from "@react-native-community/datetimepicker";
 import { Picker } from "@react-native-picker/picker";
@@ -26,6 +30,7 @@ export const AddEditNacimientoScreen = (props) => {
   const [date, setDate] = useState(new Date());
   const [showPicker, setShowPicker] = useState(false);
   const [tiposRaza, setTiposRaza] = useState(null);
+  const [clasificacionMenor, setClasificacionMenor] = useState([]);
 
   const toggleDatePicker = () => {
     setShowPicker(!showPicker);
@@ -66,6 +71,19 @@ export const AddEditNacimientoScreen = (props) => {
     recuperaTiposRaza();
   }, []);
 
+  useEffect(() => {
+    recuperaClasificacion();
+  }, []);
+
+  const recuperaClasificacion = async () => {
+    const response = await clasificacionCtrl.getAll(user.establesimiento.id);
+    const result = await response.data;
+    const dataMenor = result.filter(
+      (item) => item.attributes.dosAnhos === "Recien Nacido"
+    );
+    setClasificacionMenor(dataMenor);
+  };
+
   const recuperaTiposRaza = async () => {
     const response = await tiposRazaCtrl.getAll(user.establesimiento.id);
     setTiposRaza(response?.data || []);
@@ -99,13 +117,31 @@ export const AddEditNacimientoScreen = (props) => {
               nroCaravanaMadre: formValue.nroCaravanaMadre,
               peso: formValue.peso,
               sexo: formValue.sexo ? formValue.sexo : "Macho",
-              tipo_Parto: formValue.tipo_Parto ? formValue.sexo : "Normal",
+              tipo_Parto: formValue.tipo_Parto
+                ? formValue.tipo_Parto
+                : "Normal",
               tipo_raza: formValue.tipo_raza,
               establesimiento: user.establesimiento.id,
               user_upd: user.username,
             },
           };
           await nacimientoCtrl.create(body);
+
+          try {
+            const resultData = clasificacionMenor.filter((item) =>
+              item.attributes.nombre
+                .toLowerCase()
+                .match(body.data.sexo.toLowerCase())
+            );
+            let bodyCla = {
+              stock: parseInt(resultData[0]?.attributes.stock) + 1,
+            };
+            await clasificacionCtrl.update(resultData[0]?.id, bodyCla);
+          } catch (error) {
+            Toast.show("Error al actualizar el Stock", error, {
+              position: Toast.positions.CENTER,
+            });
+          }
         }
         navigation.goBack();
       } catch (error) {

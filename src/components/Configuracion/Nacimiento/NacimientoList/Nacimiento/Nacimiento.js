@@ -33,6 +33,7 @@ export const Nacimiento = (props) => {
   const deleteNacimiento = async () => {
     try {
       await nacimientoCtrl.delete(nacimientoId);
+
       onReload();
       Toast.show("Registro eliminado correctamente", {
         position: Toast.positions.CENTER,
