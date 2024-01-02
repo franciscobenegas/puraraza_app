@@ -53,15 +53,16 @@ export function AddEditClasificacionScreen(props) {
     onSubmit: async (formValue) => {
       try {
         if (clasificacionId) {
-          //TODO: Actualizar Datos
-          console.log(formValue);
+          // TODO: Actualizar Datos
           await clasificacionCtrl.update(clasificacionId, formValue);
         } else {
+          // TODO: Insertar Nuevo Registro
           let body = {
             data: {
               nombre: formValue.nombre,
               dosAnhos: formValue.dosAnhos ? formValue.dosAnhos : "Mayor",
-              precio: formValue.precio,
+              precio: formValue.precio === "" ? 0 : formValue.precio,
+              stock: 0,
               establesimiento: user.establesimiento.id,
               user_upd: user.username,
             },

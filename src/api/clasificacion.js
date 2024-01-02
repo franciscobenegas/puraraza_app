@@ -44,8 +44,6 @@ async function getById(identificador) {
 }
 
 async function updateData(identificador, data) {
-  console.log(identificador);
-  console.log(data);
   try {
     const url = `${ENV.API_URL}/${ENV.ENDPOINTS.CLASIFICACION}/${identificador}`;
     const params = {

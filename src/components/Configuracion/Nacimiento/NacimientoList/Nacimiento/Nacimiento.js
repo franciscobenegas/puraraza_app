@@ -15,7 +15,7 @@ export const Nacimiento = (props) => {
 
   const deleteNacimientoAlert = () => {
     Alert.alert(
-      `Eliminar ${nacimiento.nombre}`,
+      `Eliminar ${nacimiento.sexo}`,
       "Estas seguro de que deseas eliminar este Dato!!!",
       [
         {
@@ -30,6 +30,11 @@ export const Nacimiento = (props) => {
     );
   };
 
+  const retornaClasificacion = async (IdCla) => {
+    const response = await clasificacionCtrl.getId(IdCla);
+    return response.stock;
+  };
+
   const deleteNacimiento = async () => {
     try {
       await nacimientoCtrl.delete(nacimientoId);
@@ -39,13 +44,11 @@ export const Nacimiento = (props) => {
             .toLowerCase()
             .match(nacimiento.sexo.toLowerCase())
         );
-        console.log("---------------------");
-        console.log(resultData[0]?.attributes.stock);
-        console.log(resultData[0]?.id);
-        console.log("---------------------");
+
+        const stockVer = await retornaClasificacion(resultData[0].id);
 
         let bodyCla = {
-          stock: parseInt(resultData[0]?.attributes.stock) - 1,
+          stock: parseInt(stockVer) - 1,
         };
 
         let idClasificacion = resultData[0]?.id;
@@ -54,7 +57,13 @@ export const Nacimiento = (props) => {
           await clasificacionCtrl.update(idClasificacion, bodyCla);
         }
       } catch (error) {
-        console.log(error);
+        Toast.show("Error, no se pudo actualizar el Stock en Clasificacion", {
+          position: Toast.positions.CENTER,
+          duration: Toast.durations.LONG,
+          shadow: true,
+          animation: true,
+          hideOnPress: true,
+        });
       }
       onReload();
       Toast.show("Registro eliminado correctamente", {

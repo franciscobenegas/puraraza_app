@@ -3,7 +3,7 @@ import * as Yup from "yup";
 export function initialValues() {
   return {
     fecha: new Date().toISOString().slice(0, 10),
-    peso: "",
+    peso: 0,
     tipo_raza: "",
     sexo: "",
     tipo_Parto: "",

@@ -115,7 +115,7 @@ export const AddEditNacimientoScreen = (props) => {
               fecha: formValue.fecha,
               nroCaravana: formValue.nroCaravana,
               nroCaravanaMadre: formValue.nroCaravanaMadre,
-              peso: formValue.peso,
+              peso: formValue.peso === "" ? 0 : formValue.peso,
               sexo: formValue.sexo ? formValue.sexo : "Macho",
               tipo_Parto: formValue.tipo_Parto
                 ? formValue.tipo_Parto
