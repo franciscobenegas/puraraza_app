@@ -23,7 +23,7 @@ export function BarraGrafico() {
         Grafico de Clasificacion
       </Text>
       <View>
-        <BarChart data={data} frontColor="lightgray" />
+        <BarChart data={data} frontColor="steelblue" />
       </View>
     </View>
   );

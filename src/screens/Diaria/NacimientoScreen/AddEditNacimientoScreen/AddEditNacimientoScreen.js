@@ -189,9 +189,10 @@ export const AddEditNacimientoScreen = (props) => {
           label="Peso en Kg."
           style={globalStyles.form.input}
           onChangeText={(text) => formik.setFieldValue("peso", text)}
-          value={formik.values.peso}
+          value={formik.values.peso !== 0 ? formik.values.peso : ""}
           error={formik.errors.peso}
           keyboardType="numeric"
+          maxLength={10}
         />
         <HelperText
           style={{ marginTop: -15 }}

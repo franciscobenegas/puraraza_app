@@ -1,7 +1,7 @@
 import React from "react";
-import { Text, StyleSheet, View } from "react-native";
+import { Text, StyleSheet, View, ScrollView } from "react-native";
 import { CarrucelGraficos } from "../../components/Graficos/CarrucelGraficos";
-import { BarraGrafico } from "../../components/Graficos";
+import { BarraGrafico, Grafico2 } from "../../components/Graficos";
 
 export function HomeScreen() {
   return (
